@@ -5,7 +5,7 @@ from pyglet.gl import *
 from shader import Shader
  
 # create the window, but keep it offscreen until we are done with setup
-window = pyglet.window.Window(640, 480, resizable=True, visible=False, caption="Life")
+window = pyglet.window.Window(640, 480, resizable=True, visible=False, caption="Shader Time")
  
 # centre the window on whichever screen it is currently on (in case of multiple monitors)
 window.set_location(window.screen.width/2 - window.width/2, window.screen.height/2 - window.height/2)

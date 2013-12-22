@@ -1,0 +1,46 @@
+
+float rad = 80.;
+
+float DE(vec3 v) {
+	return length(v) - rad; //negative interior
+}
+
+float trace(vec3 from, vec3 direction) {
+	float epsilon = 1.0;
+	float totalDistance = 0.0;
+	int steps = 0;
+	int maxRaySteps = 500;
+	for (;steps < maxRaySteps; ++steps) {
+		vec3 pa = from + totalDistance * direction;
+		vec3 pb = from + vec3(200,0,0) + totalDistance * direction;
+		float dista = DE(pa);
+		float distb = DE(pb);
+		float dist = (dista < distb)? dista : distb;
+		totalDistance += dist;
+		if (dist < epsilon) break;
+	}
+	return 1.0 - float(steps)/float(maxRaySteps);
+}
+
+
+float pow(float base, int exp) {
+	float c = base;
+	for  (int i = 1; i < exp; ++i) {
+		c = c * base;
+	}
+	return c;
+}
+
+
+
+
+void main(void) {
+	vec3 voxel = vec3(gl_FragCoord.x - 350.0, gl_FragCoord.y - 250.0, -90.0);
+	vec3 dir = vec3(0.0,0.0,1.0);
+	float c = trace(voxel,dir);
+	gl_FragColor.r = pow(c,11);
+	gl_FragColor.g = pow(c,23);
+	gl_FragColor.b = pow(c,38);
+	gl_FragColor.a = 1.0;
+}
+	
