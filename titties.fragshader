@@ -9,7 +9,7 @@ float trace(vec3 from, vec3 direction) {
 	float epsilon = 1.0;
 	float totalDistance = 0.0;
 	int steps = 0;
-	int maxRaySteps = 500;
+	int maxRaySteps = 100;
 	for (;steps < maxRaySteps; ++steps) {
 		vec3 pa = from + totalDistance * direction;
 		vec3 pb = from + vec3(200,0,0) + totalDistance * direction;

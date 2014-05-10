@@ -33,6 +33,8 @@ float mandelbrot(vec2 c, int i, float step) {
     vec2 z = c;
     for (int n = 0; n < i; ++n) {
         z = complexmult(z,z) + c;
+	z.x = abs(z.x);
+	z.y = abs(z.y);
         if (z.x * z.x + z.y * z.y >= 4.0)
             break;
         sum += step;
@@ -51,6 +53,4 @@ void main (void)
         gl_FragColor.b = 1.0; 
         gl_FragColor.a = 1.0;
 }
-
-
 
